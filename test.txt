@@ -1,1 +1,2 @@
+#Ten plik został stowrzony testownia GIT-a.
 1+1=2
