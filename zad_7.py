@@ -1,26 +1,36 @@
 def raf_load(page:str):
-    #import urllib.request
-    #with urllib.request.urlopen(page) as response:
-    #    html = response.read()
-    #    return ht
     import requests
     return requests.get(page).json()
 
 class Brewery:
-    name:str=""
-    location:dict=""
-    type:str=""
-    def __init__(self,n,l,t):
-        self.name=n
-        self.location=l
-        self.type=t
+    new_id:int=0
+    def __init__(self,name,location,type):
+        self.name:str=name
+        self.location:dict=location
+        self.type:str=type
+        self.id=Brewery.new_id
+        Brewery.new_id+=1
+
+    def print(self):
+        print("Brewery ",self.id,"(",self.name,",",self.location,",",self.type,")")
 
 def load():
-    breweries=raf_load('https://api.openbrewerydb.org/breweries')
-    for b in breweries:
-        print("name=", b['name'])
-        print("state=",b['state'],"city=", b['city'],"street=",b['street'])
-        print("type=", b['brewery_type'])
-        obj=Brewery.new(b['name'],{b['name']},b['brewery_type'])
+    #breweries_json=raf_load('https://api.openbrewerydb.org/breweries')
+    breweries_json=raf_load('https://api.openbrewerydb.org/breweries/random?size=20')
+    res=[]
+    for b in breweries_json:
+        name= b['name']
+        location= {"state":b['state'],"city=":b['city'],"street":b['street']}
+        type= b['brewery_type']
 
-load()
+        brewery_obj=Brewery(name,location,type)
+        res.append(brewery_obj)
+    return res
+
+def main():
+    breweries=load()
+    for b in breweries:
+        b.print()
+
+
+main()
