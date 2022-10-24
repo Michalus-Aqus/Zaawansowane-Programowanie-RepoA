@@ -16,5 +16,6 @@ def main():
     for s in students:
         print(s.name," ",s.is_passed())
         
-main()
+if __name__ == "__main__": 
+    main()
 
