@@ -1,4 +1,5 @@
-def is_sum_grater(x,y,z):
-    return x+y>z
+def is_sum_grater(x, y, z):
+    return x + y > z
 
-print(is_sum_grater(2,3,5))
+
+print(is_sum_grater(2, 3, 5))

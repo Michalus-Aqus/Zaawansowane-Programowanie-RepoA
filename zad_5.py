@@ -1,10 +1,9 @@
-def is_in(l:list,n:int):
+def is_in(l: list, n: int):
     return n in l
 
-print(is_in([1,2,3],4))
-print(is_in([1,2,3],3))
 
-
+print(is_in([1, 2, 3], 4))
+print(is_in([1, 2, 3], 3))
 
 """
 def has_someting_in_common(a:list,b:list):
@@ -21,4 +20,3 @@ print(has_someting_in_common([[],2,3],[[],0,-1]))
 print(has_someting_in_common([float("nan"),2,3],[float("nan"),0,-1]))
 
 """
-
