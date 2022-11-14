@@ -1,5 +1,6 @@
 from flask import Flask
 import csv
+from MovieApp.Movie import Movie
 
 FILE_LINKS = open("data/links.csv", "r", encoding="utf-8").read()
 FILE_MOVIES = open("data/movies.csv", "r", encoding="utf-8").read()
@@ -18,16 +19,17 @@ def get_links():
 @app.route("/movies")
 def get_movies():
     r = csv.DictReader(FILE_MOVIES.split('\n'), delimiter=',')
-    return str([obj for obj in r])
+    Movies = [Movie(movie_dictionary) for movie_dictionary in r]
+    return str([m.__dict__() for m in Movies])
 
 
 @app.route("/tags")
-def get_links():
+def get_tags():
     r = csv.DictReader(FILE_TAGS.split('\n'), delimiter=',')
     return str([obj for obj in r])
 
 
 @app.route("/ratings")
-def get_links():
+def get_ratings():
     r = csv.DictReader(FILE_RATINGS.split('\n'), delimiter=',')
     return str([obj for obj in r])
